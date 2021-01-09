@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Account Form</title>
+<meta charset="UTF-8">
+<link th:href="@{/main.css}" type="text/css" rel="stylesheet" />
+<script th:src="@{/jquery-3.4.1.min.js}"></script>
+</head>
+<body>
+
+	<div th:insert="menu"></div>
+
+	<div class="main">
+		<div th:insert="header"></div>
+
+		<form th:action="@{/save-account}" th:object="${account}">
+			<table border="1" width="90%" align="center" cellpadding="5">
+				<tr>
+					<td class="fheading" colspan="4">Account Form</td>
+				</tr>
+				<tr>
+					<td>Account Name</td>
+					<td><input type="text" th:field="*{accountName}"
+						placeholder="Enter Account Name" required style="width: 98%" /></td>
+
+					<td>Account Number</td>
+					<td><input type="number" th:field="*{accountNumber}"
+						placeholder="Enter Account Number" required style="width: 98%" />
+					</td>
+
+				</tr>
+				<tr>
+
+					<td>Account Type</td>
+					<td><select th:field="*{accountType}" style="width: 98%">
+							<option th:value="-1">--Select Account Type--</option>
+							<option th:value="01">Savings</option>
+							<option th:value="02">Current</option>
+					</select></td>
+
+
+
+					<td>Bank</td>
+					<td>
+						<!--<input type="text" th:field="*{branchId}"/>--> <select
+						th:field="*{bankId}" style="width: 98%" id="bankId">
+							<option th:value="-1">-- Select Bank --</option>
+							<option th:each="i : ${banks}" th:value="${i.bankId}"
+								th:text="${i.bankName}"></option>
+					</select>
+					</td>
+
+				</tr>
+
+				<tr>
+
+					<td>Branch Name</td>
+					<td>
+						<!--<input type="text" th:field="*{branchId}"/>--> <select
+						th:field="*{branchId}" style="width: 98%">
+							<option th:value="-1">-- Select Branch --</option>
+							<option th:each="i : ${branches}" th:value="${i.id}"
+								th:text="${i.branchName}"></option>
+					</select>
+					</td>
+
+<!-- 					<td>Balance</td>
+					<td><input type="number" th:field="*{currentBalance}"
+						placeholder="Enter Balance" required style="width: 98%" /></td> -->
+				</tr>
+
+
+				<tr>
+					<td colspan="4" align="center">
+						<button>Save</button>
+					</td>
+				</tr>
+
+			</table>
+		</form>
+		<br />
+		<table border="1" width="90%" align="center" cellpadding="5">
+			<tr>
+				<td style="font-size: 20px; font-weight: bold" colspan="7">Account
+					List</td>
+			</tr>
+			<tr>
+				<th>SR</th>
+				<th hidden>ID</th>
+				<th>Account Name</th>
+				<th>Account Number</th>
+				<th>Account Type</th>	
+				<th>ACTION</th>
+			</tr>
+			<tr th:each="inst,itr : ${accList}">
+				<td th:text="${itr.count}">SR</td>
+				<td hidden th:text="${inst.id}">ID</td>
+				<td style="text-align: center" th:text="${inst.accountName}">Account
+					Name</td>
+				<td style="text-align: center" th:text="${inst.accountNumber}">Account
+					Number</td>
+				<td th:text="${inst.accountType=='1'?'Savings':'Current'}">Account
+					Type</td>
+				
+				<td><a th:href="@{'/account-edit/'+${inst.id}}">Edit</a> | <a
+					th:href="@{'/account-delete/'+${inst.id}}">Delete</a></td>
+			</tr>
+		</table>
+	</div>
+
+	<script src="account.js"></script>
+     <script src="menu.js"></script>
+
+</body>
+</html>

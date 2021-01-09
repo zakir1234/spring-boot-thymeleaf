@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Welcome</title>
+        <meta charset="UTF-8">        
+        <link th:href="@{/main.css}" type="text/css" rel="stylesheet" />
+        <script th:src="@{/jquery-3.4.1.min.js}"></script>  
+        
+        <style>
+            table {
+                border-collapse: collapse;
+                border: 1px solid #999999;
+                margin: 100px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div th:insert="menu"></div>
+
+        <div class="main">
+            <div ></div>
+            <form>
+                <a>
+                    <!--<img th:src="@{/logo.png}" style="height: 80px;width: 80px"/>-->
+                </a>
+                <table border="1" width="90%" align="center" cellpadding="5">
+                    <tr>
+                        <td class="fheading"  colspan="4">
+                            Welcome
+                            To
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Java based web application to calculate and pay the salary of employees</td>
+                    </tr>
+
+                </table>
+            </form>
+             <br/>
+
+        </div>
+        
+        
+          <script src="menu.js"></script>   
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Bank</title>
+        <meta charset="UTF-8">        
+        <link th:href="@{/main.css}" type="text/css" rel="stylesheet" />
+        <script th:src="@{/jquery-3.4.1.min.js}"></script>               
+    </head>
+    <body>
+
+        <div th:insert="menu"></div>
+
+        <div class="main">
+            <div th:insert="header"></div>
+
+            <form th:action="@{/save-bank}" method="post" th:object="${bank}">
+                <table border="1" width="90%" align="center" cellpadding="5">     
+                    <tr>
+                        <td class="fheading" colspan="3">Add Bank</td>
+                    </tr>
+                    <tr>                       
+                        <td align="right">Bank Name
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{bankName}" placeholder="Enter Bank Name" required style="width:98%"/>
+                            <input type="hidden" th:field="*{bankId}" />
+                            
+                            <span class="txt_small"></span>
+                        </td>    
+                        <td width="40%">
+                            <button >Save</button>
+                        </td> 
+                    </tr>
+                </table>
+            </form>
+            <br/>
+
+            <table border="1" width="90%" align="center" cellpadding="5">                         
+                <tr>                       
+                    <th>SR</th>
+                    <th hidden>ID</th>
+                    <th>BANK NAME</th>                        
+                    <th>ACTION</th>                        
+                </tr>
+                <tr th:each="bank,itr: ${bankList}">
+                    <td th:text="${itr.count}">SR</td>
+                    <td hidden th:text="${bank.bankId}">ID</td>
+                    <td th:text="${bank.bankName}">SOURCE</td>
+                    <td> <a th:href="@{'/bank-edit/'+${bank.bankId}}">Edit</a> | <a th:href="@{'/bank-delete/'+${bank.bankId}}">Delete</a></td>
+                </tr>
+            </table>
+
+
+
+
+
+        </div>
+             <script src="menu.js"></script>
+    </body>
+</html>

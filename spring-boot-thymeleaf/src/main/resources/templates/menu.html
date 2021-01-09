@@ -1,0 +1,22 @@
+<div class="sidenav">
+    <div>
+        <a  th:href="@{/employee-form}" style="padding-bottom: 0; padding-top:0 ; margin-left: 12px">
+            <img th:src="@{/logo.png}" style="height: 80px;width: 80px"/>
+        </a>  
+        <a style="font-size: 12px; margin-left: 0; padding-top: 0" th:href="@{/employee-form}"></a>
+    </div>
+    <div id="bank-div" class="mheader">
+        Bank & Branch
+    </div>    
+    <div id="bank-div-links" class="links">
+    <a th:href="@{/bank}">Add Bank</a>
+    <a th:href="@{/branch}">Add Branch</a>
+    </div> 
+    <div id="emp-acc-div" class="mheader">
+        Employee & Account
+    </div>
+        <div id="emp-acc-div-links" class="links">
+    <a th:href="@{/account-form}" >Add Account</a>
+    </div>
+
+</div>
